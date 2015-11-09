@@ -1,0 +1,22 @@
+dev:
+  propel:
+    param:
+      classname:  DebugPDO
+
+test:
+  propel:
+    param:
+      classname:  DebugPDO
+
+all:
+  propel:
+    class:        sfPropelDatabase
+    param:
+      classname:  PropelPDO
+#      dsn:        mysql:dbname=taller;host=localhost
+      dsn:        pgsql:dbname=sti;host=162.122.74.96
+      username:   postgres
+      password:   postgres123
+      encoding:   utf8
+      persistent: true
+      pooling:    true

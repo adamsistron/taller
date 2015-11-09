@@ -1,0 +1,626 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  c004t_acta_aie:
+    _attributes: { phpName: C004tActaAie }
+    co_aie: { type: BIGINT, autoIncrement: true, required: true }
+    fe_emision: { type: DATE, required: false }
+    co_forense: { type: BIGINT, required: false }
+    co_region: { type: BIGINT, required: false }
+    co_negocio: { type: BIGINT, required: false }
+    co_division: { type: BIGINT, required: false }
+    tx_serial: { type: VARCHAR, required: false }
+    co_elabora: { type: BIGINT, required: false }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    in_registro: { type: BOOLEAN, required: false }
+    tx_cladificacion: { type: VARCHAR, required: false }
+  c024t_recurso:
+    _attributes: { phpName: C024tRecurso }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_recurso: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    _indexes: { fki_co_created_at7: [co_usuario_created], fki_co_update_at7: [co_usuario_updated] }
+  j001t_alcance_forense:
+    _attributes: { phpName: J001tAlcanceForense }
+    co_alcance_forense: { type: BIGINT, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+  j001t_menu:
+    _attributes: { phpName: J001tMenu }
+    co_menu: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_menu: { type: VARCHAR, required: false }
+    co_padre: { type: BIGINT, required: false }
+    tx_href: { type: VARCHAR, required: false }
+    tx_icono: { type: VARCHAR, required: false }
+    nu_orden: { type: BIGINT, required: false }
+    tx_sigla: { type: VARCHAR, required: false }
+  j002t_usuario:
+    _attributes: { phpName: J002tUsuario }
+    co_usuario: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_indicador: { type: VARCHAR, required: false }
+    nb_empleado: { type: VARCHAR, required: false }
+    ap_empleado: { type: VARCHAR, required: false }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    co_rol: { type: BIGINT, required: false, foreignTable: j003t_rol, foreignReference: co_rol }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    _indexes: { fki_co_division: [co_division], fki_co_negocio13: [co_negocio], fki_co_region_usuario: [co_region], fki_co_rol: [co_rol] }
+  j003t_rol:
+    _attributes: { phpName: J003tRol }
+    co_rol: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_rol: { type: VARCHAR, required: false }
+  j004t_rol_menu:
+    _attributes: { phpName: J004tRolMenu }
+    co_rol_menu: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    co_rol: { type: BIGINT, required: false, foreignTable: j003t_rol, foreignReference: co_rol }
+    co_menu: { type: BIGINT, required: false, foreignTable: j001t_menu, foreignReference: co_menu }
+    in_ver: { type: BOOLEAN, required: false }
+    _indexes: { fki_co_menu_rol_menu: [co_rol], fki_co_rol_menu: [co_menu] }
+  j005t_transaccion:
+    _attributes: { phpName: J005tTransaccion }
+    co_transaccion: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_transaccion: { type: DATE, required: false }
+    co_usuario: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    _indexes: { fki_co_usuario_tran: [co_usuario] }
+  j006t_solicitud:
+    _attributes: { phpName: J006tSolicitud }
+    co_solicitud: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_serial: { type: VARCHAR, required: false }
+    tx_solicitud: { type: VARCHAR, required: false }
+    fe_solicitud: { type: DATE, required: false }
+    co_tipo_solicitud: { type: BIGINT, required: false, foreignTable: j001t_menu, foreignReference: co_menu }
+    archivo: { type: BLOB, required: false }
+    mime: { type: VARCHAR, required: false }
+    co_transaccion: { type: BIGINT, required: false, foreignTable: j005t_transaccion, foreignReference: co_transaccion }
+    co_usuario: { type: BIGINT, required: false }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    _indexes: { fki_co_region_sol: [co_region], fki_co_tipo_solicitud: [co_tipo_solicitud], fki_co_transaccion_sol: [co_transaccion] }
+  j007t_region:
+    _attributes: { phpName: J007tRegion }
+    co_region: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_region: { type: VARCHAR, required: false }
+    tx_sigla: { type: VARCHAR, required: false }
+  j008t_division:
+    _attributes: { phpName: J008tDivision }
+    co_division: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_division: { type: VARCHAR, required: false }
+    tx_sigla: { type: VARCHAR, required: false }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    _indexes: { fki_co_negocio: [co_negocio] }
+  j009t_serial:
+    _attributes: { phpName: J009tSerial }
+    co_tp_documento: { type: BIGINT, required: false, foreignTable: j001t_menu, foreignReference: co_menu }
+    nu_serial: { type: BIGINT, required: false }
+    nu_anio: { type: NUMERIC, required: false }
+    co_serial: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_nomenclatura: { type: VARCHAR, required: false }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    _indexes: { fki_co_menu: [co_tp_documento], fki_co_region_serial: [co_region] }
+  j010t_evaluacion:
+    _attributes: { phpName: J010tEvaluacion }
+    co_evaluacion: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_serial: { type: VARCHAR, required: false }
+    tx_titulo: { type: VARCHAR, required: false }
+    fe_evaluacion: { type: DATE, required: false }
+    co_transaccion: { type: BIGINT, required: false, foreignTable: j005t_transaccion, foreignReference: co_transaccion }
+    co_usuario: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    co_solicitud: { type: BIGINT, required: false }
+    _indexes: { fki_co_region_eva: [co_region], fki_co_transaccion_eva: [co_transaccion], fki_co_usuario_eva: [co_usuario] }
+  j011t_vulnerabilidad:
+    _attributes: { phpName: J011tVulnerabilidad }
+    co_vulnerabilidad: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_vulnerabilidad: { type: VARCHAR, required: false }
+    fe_vulnerabilidad: { type: DATE, required: false }
+    co_transaccion: { type: BIGINT, required: true, foreignTable: j005t_transaccion, foreignReference: co_transaccion }
+    in_aplicacion: { type: BOOLEAN, required: false }
+    in_cerrado: { type: BOOLEAN, required: false }
+  j012t_cronograma:
+    _attributes: { phpName: J012tCronograma }
+    co_cronograma: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    fe_cronograma: { type: DATE, required: false }
+    co_transaccion_enlace: { type: BIGINT, required: false, foreignTable: j005t_transaccion, foreignReference: co_transaccion }
+    co_transaccion: { type: BIGINT, required: false, foreignTable: j005t_transaccion, foreignReference: co_transaccion }
+    tx_serial: { type: VARCHAR, required: false }
+    co_usuario: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_transaccion_enlace: [co_transaccion_enlace], fki_co_transaccion_local: [co_transaccion], fki_co_usuario_cron: [co_usuario] }
+  j013t_vul_cronograma:
+    _attributes: { phpName: J013tVulCronograma }
+    co_vulnerabilidad: { type: BIGINT, required: true, foreignTable: j011t_vulnerabilidad, foreignReference: co_vulnerabilidad }
+    co_cronograma: { type: BIGINT, required: true, foreignTable: j012t_cronograma, foreignReference: co_cronograma }
+    in_cerrada: { type: BOOLEAN, required: false }
+    co_vul_cronograma: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    _indexes: { fki_co_cronograma_vul: [co_cronograma], fki_co_vulnerabilidad: [co_vulnerabilidad] }
+  j014t_negocio:
+    _attributes: { phpName: J014tNegocio }
+    co_negocio: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_negocio: { type: VARCHAR, required: false }
+    tx_sigla: { type: VARCHAR, required: false }
+  j015t_region_negocio:
+    _attributes: { phpName: J015tRegionNegocio }
+    co_region: { type: BIGINT, required: true, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: true, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_region_negocio: { type: BIGINT, primaryKey: true, required: true }
+    _indexes: { fki_negocio_reg: [co_negocio] }
+  j016t_forense:
+    _attributes: { phpName: J016tForense }
+    co_forense: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_apertura: { type: DATE, required: false }
+    fe_cierre: { type: DATE, required: false }
+    co_usuario_apertura: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_cierre: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    tx_serial: { type: VARCHAR, required: false }
+    in_abierto: { type: BOOLEAN, required: false }
+    tx_descripcion_solicitud: { type: VARCHAR, required: false }
+    tx_caso_aaii: { type: VARCHAR, required: false }
+    co_alcance_forense: { type: BIGINT, required: false, foreignTable: j017t_alcance_forense, foreignReference: co_alcance_forense }
+    tx_descripcion_entorno: { type: VARCHAR, required: false }
+    tx_metologia_herramientas: { type: VARCHAR, required: false }
+    tx_observaciones: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_alcance: [co_alcance_forense], fki_co_division2: [co_division], fki_co_negocio2: [co_negocio], fki_co_region: [co_region], fki_co_usuario_apertura: [co_usuario_apertura], fki_co_usuario_cierre: [co_usuario_cierre], fki_co_usuario_created: [co_usuario_update] }
+  j017t_alcance_forense:
+    _attributes: { phpName: J017tAlcanceForense }
+    co_alcance_forense: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: DATE, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_usuario_created3: [co_usuario_created], fki_co_usuario_update3: [co_usuario_updated] }
+  j018t_informe_forense:
+    _attributes: { phpName: J018tInformeForense }
+    co_informe_forense: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_emision: { type: DATE, required: false }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    tx_serial: { type: VARCHAR, required: false }
+    co_revisa: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_aprueba: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_resultados: { type: VARCHAR, required: false }
+    tx_conclusiones: { type: VARCHAR, required: false }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_aprueba: [co_aprueba], fki_co_division3: [co_division], fki_co_forense: [co_forense], fki_co_negocio3: [co_negocio], fki_co_region3: [co_region], fki_co_revisa3: [co_revisa], fki_co_usuario_created4: [co_usuario_created], fki_co_usuario_update4: [co_usuario_update] }
+  j019t_participantes:
+    _attributes: { phpName: J019tParticipantes }
+    co_participante: { type: BIGINT, primaryKey: true, required: true }
+    co_usuario_elabora: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_informe_recomendaciones: { type: BIGINT, required: false }
+    co_informe_incidente: { type: BIGINT, required: false }
+    co_informe_forense: { type: BIGINT, required: false, foreignTable: j018t_informe_forense, foreignReference: co_informe_forense }
+    co_informe_depuracion: { type: BIGINT, required: false }
+    co_mantenimiento: { type: BIGINT, required: false }
+    co_doumento_normativo: { type: BIGINT, required: false }
+    _indexes: { fki_co_forense3: [co_forense], fki_co_informe_forense: [co_informe_forense], fki_co_usuario_elabora: [co_usuario_elabora] }
+  j020t_acta_acc:
+    _attributes: { phpName: J020tActaAcc }
+    co_acc: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_emision: { type: DATE, required: false }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    tx_serial: { type: VARCHAR, required: false }
+    co_elabora: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    fe_destruye: { type: DATE, required: false }
+    co_destruye: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    in_abierta: { type: BOOLEAN, required: false }
+    _indexes: { fki_co_destruye4: [co_destruye], fki_co_division4: [co_division], fki_co_forense4: [co_forense], fki_co_negocio4: [co_negocio], fki_co_region4: [co_region], fki_co_usuario_created5: [co_usuario_created], fki_co_usuario_update5: [co_usuario_update] }
+  j021t_acta_aie:
+    _attributes: { phpName: J021tActaAie }
+    co_aie: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_emision: { type: DATE, required: false }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    tx_serial: { type: VARCHAR, required: false }
+    co_elabora: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_division5: [co_division], fki_co_forense5: [co_forense], fki_co_negocio5: [co_negocio], fki_co_region5: [co_region], fki_co_usuario_created6: [co_usuario_created], fki_co_usuario_update6: [co_usuario_update] }
+  j022t_acta_anie:
+    _attributes: { phpName: J022tActaAnie }
+    co_anie: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_emision: { type: DATE, required: false }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    tx_serial: { type: VARCHAR, required: false }
+    co_elabora: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_custodio_niega: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    in_abierta: { type: BOOLEAN, required: false }
+    _indexes: { fki_co_division6: [co_division], fki_co_forense6: [co_forense], fki_co_negocio6: [co_negocio], fki_co_region6: [co_region], fki_co_usuario_created7: [co_usuario_created], fki_co_usuario_update7: [co_usuario_update] }
+  j023t_evidencia:
+    _attributes: { phpName: J023tEvidencia }
+    co_evidencia: { type: BIGINT, primaryKey: true, required: true }
+    fe_registro: { type: DATE, required: false }
+    co_registro: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_acc: { type: BIGINT, required: false, foreignTable: j020t_acta_acc, foreignReference: co_acc }
+    co_aie: { type: BIGINT, required: false, foreignTable: j021t_acta_aie, foreignReference: co_aie }
+    tx_descripcion_coleccion: { type: LONGVARCHAR, required: false }
+    fe_coleccion_evidencia: { type: DATE, required: false }
+    co_colecta: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_recurso: { type: BIGINT, required: false }
+    tx_nombre_recurso: { type: BIGINT, required: false }
+    tx_serial_recurso: { type: BIGINT, required: false }
+    tx_marca_recurso: { type: LONGVARCHAR, required: false }
+    tx_modelo_recurso: { type: BIGINT, required: false }
+    tx_numero_activo: { type: BIGINT, required: false }
+    co_tipo_evidencia: { type: BIGINT, required: false, foreignTable: j025t_tipo_evidencia, foreignReference: co_tipo_evidencia }
+    co_estado_evidencia: { type: BIGINT, required: false, foreignTable: j026t_estado_evidencia, foreignReference: co_estado_evidencia }
+    co_lugar_seguro: { type: BIGINT, required: false, foreignTable: j027t_lugar_seguro, foreignReference: co_lugar_seguro }
+    co_repositorio: { type: BIGINT, required: false, foreignTable: j028t_repositorio, foreignReference: co_repositorio }
+    co_custodio_sti: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_update_at: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_acc: [co_acc], fki_co_aie: [co_aie], fki_co_colecta: [co_colecta], fki_co_custodio_sti: [co_custodio_sti], fki_co_estado_evidencia: [co_estado_evidencia], fki_co_lugar_seguro: [co_lugar_seguro], fki_co_recurso: [co_recurso], fki_co_registro: [co_registro], fki_co_repositorio: [co_repositorio], fki_co_tipo_evidencia: [co_tipo_evidencia], fki_co_update_at: [co_update_at] }
+  j025t_tipo_evidencia:
+    _attributes: { phpName: J025tTipoEvidencia }
+    co_tipo_evidencia: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_created_at8: [co_usuario_created], fki_co_update_at8: [co_usuario_updated] }
+  j026t_estado_evidencia:
+    _attributes: { phpName: J026tEstadoEvidencia }
+    co_estado_evidencia: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_created_at9: [co_usuario_created], fki_co_update_at9: [co_usuario_updated] }
+  j027t_lugar_seguro:
+    _attributes: { phpName: J027tLugarSeguro }
+    co_lugar_seguro: { type: BIGINT, primaryKey: true, required: true }
+    tx_ubicacion_fisica: { type: VARCHAR, required: false }
+    tx_gerencia_custodia: { type: VARCHAR, required: false }
+    co_custodio: { type: BIGINT, required: false }
+    tx_observaciones: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_created_at10: [co_usuario_created], fki_co_update_at10: [co_usuario_updated] }
+  j028t_repositorio:
+    _attributes: { phpName: J028tRepositorio }
+    co_repositorio: { type: BIGINT, primaryKey: true, required: true }
+    tx_nombre: { type: VARCHAR, required: false }
+    tx_direccion_ip: { type: VARCHAR, required: false }
+    co_custodio: { type: BIGINT, required: false }
+    tx_observaciones: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_created_at11: [co_usuario_created], fki_co_update_at11: [co_usuario_updated] }
+  j029t_historico_evidencia:
+    _attributes: { phpName: J029tHistoricoEvidencia }
+    co_historico_evidencia: { type: BIGINT, required: false }
+    co_evidencia: { type: BIGINT, required: false }
+    fe_cambio_estado: { type: DATE, required: false }
+    co_cambia_estado: { type: BIGINT, required: false }
+    tx_estado_anterior: { type: VARCHAR, required: false }
+    tx_lugar_anterior: { type: VARCHAR, required: false }
+    tx_custodio_anterior: { type: VARCHAR, required: false }
+    tx_repositorio_anterior: { type: VARCHAR, required: false }
+    tx_observaciones: { type: VARCHAR, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+  j030t_informe_recomendaciones:
+    _attributes: { phpName: J030tInformeRecomendaciones }
+    co_informe_recomendaciones: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_emision: { type: DATE, required: false }
+    co_accion: { type: BIGINT, required: false, foreignTable: j031t_accion_recomendada, foreignReference: co_accion }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    tx_serial: { type: VARCHAR, required: false }
+    co_revisa: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_aprueba: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_resumen_ejecutivo: { type: VARCHAR, required: false }
+    tx_antecedentes: { type: LONGVARCHAR, required: false }
+    tx_situacion_actual: { type: LONGVARCHAR, required: false }
+    tx_preocupacion: { type: LONGVARCHAR, required: false }
+    tx_recomendaciones: { type: LONGVARCHAR, required: false }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_accion: [co_accion], fki_co_aprueba8: [co_aprueba], fki_co_division8: [co_division], fki_co_negocio8: [co_negocio], fki_co_region8: [co_region], fki_co_revisa8: [co_revisa], fki_co_usuario_created8: [co_usuario_created], fki_co_usuario_update8: [co_usuario_update] }
+  j031t_accion_recomendada:
+    _attributes: { phpName: J031tAccionRecomendada }
+    co_accion: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    tx_responsable_ejecutar: { type: VARCHAR, required: false }
+    co_responsable_sti_ejecutar: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    fecha_a_ejecutar: { type: DATE, required: false }
+    fecha_ejecutada: { type: DATE, required: false }
+    tx_seguimiento: { type: LONGVARCHAR, required: false }
+    tx_observaciones: { type: VARCHAR, required: false }
+    in_abierto: { type: BOOLEAN, required: false }
+    created_at: { type: DATE, required: false }
+    co_created_at: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    updated_at: { type: TIMESTAMP, required: false }
+    co_update_at: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_incidente: { type: BIGINT, required: false, foreignTable: j034t_incidente, foreignReference: co_incidente }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_monitoreo: { type: BIGINT, required: false }
+    co_depuracion: { type: BIGINT, required: false }
+    _indexes: { fki_co_created_at12: [co_created_at], fki_co_forense12: [co_forense], fki_co_incidente5: [co_incidente], fki_co_responsable_sti: [co_responsable_sti_ejecutar], fki_co_updated_at: [co_update_at] }
+  j032t_seriales_enlaces_ir:
+    _attributes: { phpName: J032tSerialesEnlacesIr }
+    co_enlaces_ir: { type: BIGINT, primaryKey: true, required: true }
+    co_informe_recomendaciones: { type: BIGINT, required: false, foreignTable: j030t_informe_recomendaciones, foreignReference: co_informe_recomendaciones }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_incidente: { type: BIGINT, required: false }
+    co_depuracion: { type: BIGINT, required: false }
+    _indexes: { fki_co_forense8: [co_forense], fki_co_informe_recomendaciones2: [co_informe_recomendaciones] }
+  j033t_procesos:
+    _attributes: { phpName: J033tProcesos }
+    co_proceso: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    tx_proceso: { type: VARCHAR, required: false }
+    tx_sigla: { type: VARCHAR, required: false }
+  j034t_incidente:
+    _attributes: { phpName: J034tIncidente }
+    co_incidente: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_apertura: { type: DATE, required: false }
+    fe_escalado: { type: DATE, required: false }
+    fe_cierre: { type: DATE, required: false }
+    co_usuario_apertura: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_escala: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_cierre: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
+    co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    tx_serial: { type: VARCHAR, required: false }
+    co_estado: { type: BIGINT, required: false, foreignTable: j042t_estado_incidente, foreignReference: co_estado_incidente }
+    co_tipo_incidente: { type: BIGINT, required: false, foreignTable: j043t_tipo_incidentes, foreignReference: co_tipo_incidentes }
+    co_tipo_hecho: { type: BIGINT, required: false, foreignTable: j044t_tipo_hechos, foreignReference: co_tipo_hechos }
+    tx_descripcion: { type: VARCHAR, required: false }
+    fe_incio_hecho: { type: DATE, required: false }
+    fe_fin_hecho: { type: DATE, required: false }
+    tx_causa: { type: VARCHAR, required: false }
+    tx_metologia_herramientas: { type: VARCHAR, required: false }
+    tx_observaciones: { type: VARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_acciones_tomadas: { type: VARCHAR, required: false }
+    _indexes: { fki_co_division16: [co_division], fki_co_estado_incidente: [co_estado], fki_co_negocio16: [co_negocio], fki_co_region16: [co_region], fki_co_tipo_hechos: [co_tipo_hecho], fki_co_tipo_incidentes: [co_tipo_incidente], fki_co_usuario_apertura16: [co_usuario_apertura], fki_co_usuario_cierre16: [co_usuario_cierre], fki_co_usuario_created16: [co_usuario_update], fki_co_usuario_escala: [co_usuario_escala] }
+  j035t_servicios:
+    _attributes: { phpName: J035tServicios }
+    co_servicios: { type: BIGINT, primaryKey: true, required: true }
+    tx_servicio: { type: VARCHAR, required: false }
+    tx_valor_impacto: { type: BIGINT, required: false }
+    co_created_at: { type: BIGINT, required: false }
+    co_updated_at: { type: BIGINT, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+  j036t_principio:
+    _attributes: { phpName: J036tPrincipio }
+    co_principio: { type: BIGINT, primaryKey: true, required: true }
+    tx_principio: { type: VARCHAR, required: false }
+    tx_descripcion: { type: VARCHAR, required: false }
+  j037t_incidente_principio:
+    _attributes: { phpName: J037tIncidentePrincipio }
+    co_incidente_principio: { type: BIGINT, primaryKey: true, required: true }
+    co_incidente: { type: BIGINT, required: false, foreignTable: j034t_incidente, foreignReference: co_incidente }
+    co_principio: { type: BIGINT, required: false, foreignTable: j036t_principio, foreignReference: co_principio }
+    _indexes: { fki_incidente: [co_incidente], fki_principio: [co_principio] }
+  j038t_incidente_servicios:
+    _attributes: { phpName: J038tIncidenteServicios }
+    co_incidente_servicios: { type: BIGINT, primaryKey: true, required: true }
+    co_incidente: { type: BIGINT, required: false, foreignTable: j034t_incidente, foreignReference: co_incidente }
+    co_servicios: { type: BIGINT, required: false, foreignTable: j035t_servicios, foreignReference: co_servicios }
+    _indexes: { fki_incidente8: [co_incidente], fki_servicios2: [co_servicios] }
+  j039t_herramienta_utilizada:
+    _attributes: { phpName: J039tHerramientaUtilizada }
+    co_herramienta_utilizada: { type: BIGINT, required: false }
+    co_herramientas: { type: BIGINT, required: false }
+    co_incidente: { type: BIGINT, required: false }
+    co_forense: { type: BIGINT, required: false }
+    co_inventario: { type: BIGINT, required: false }
+    co_created_at: { type: BIGINT, required: false }
+    co_updated_at: { type: BIGINT, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+  j040t_tipo_herramientas:
+    _attributes: { phpName: J040tTipoHerramientas }
+    co_tipo_herramientas: { type: BIGINT, primaryKey: true, required: true }
+    tx_tipo_herramienta: { type: BIGINT, required: false }
+    co_created_at: { type: BIGINT, required: false }
+    co_update_at: { type: BIGINT, required: false }
+    created_at: { type: DATE, required: false }
+    updated_at: { type: TIMESTAMP, required: false }
+  j041t_herramientas:
+    _attributes: { phpName: J041tHerramientas }
+    co_herramientas: { type: BIGINT, primaryKey: true, required: true }
+    tx_herramienta: { type: BIGINT, required: false }
+    co_tipo_herramientas: { type: BIGINT, required: false, foreignTable: j040t_tipo_herramientas, foreignReference: co_tipo_herramientas }
+    created_at: { type: DATE, required: false }
+    updated_at: { type: TIMESTAMP, required: false }
+    _indexes: { fki_co_tipo_herramienta: [co_tipo_herramientas] }
+  j042t_estado_incidente:
+    _attributes: { phpName: J042tEstadoIncidente }
+    co_estado_incidente: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_created_at18: [co_usuario_created], fki_co_update_at18: [co_usuario_updated] }
+  j043t_tipo_incidentes:
+    _attributes: { phpName: J043tTipoIncidentes }
+    co_tipo_incidentes: { type: BIGINT, primaryKey: true, required: true }
+    co_created_at: { type: BIGINT, required: false }
+    co_update_at: { type: BIGINT, required: false }
+    created_at: { type: DATE, required: false }
+    updated_at: { type: TIMESTAMP, required: false }
+    tx_tipo_incidentes: { type: VARCHAR, required: false }
+  j044t_tipo_hechos:
+    _attributes: { phpName: J044tTipoHechos }
+    co_tipo_hechos: { type: BIGINT, primaryKey: true, required: true }
+    co_created_at: { type: BIGINT, required: false }
+    co_update_at: { type: BIGINT, required: false }
+    created_at: { type: DATE, required: false }
+    updated_at: { type: TIMESTAMP, required: false }
+    tx_tipo_hechos: { type: VARCHAR, required: false }
+    co_tipo_incidente: { type: BIGINT, required: false, foreignTable: j043t_tipo_incidentes, foreignReference: co_tipo_incidentes }
+    _indexes: { fki_co_tipo_incidente: [co_tipo_incidente] }
+  j045t_referencia_marco:
+    _attributes: { phpName: J045tReferenciaMarco }
+    co_referencia_marco: { type: BIGINT, primaryKey: true, required: true }
+    co_marco_normativo: { type: BIGINT, required: false, foreignTable: j046t_marco_normativo, foreignReference: co_marco_normativo }
+    co_incidente: { type: BIGINT, required: false, foreignTable: j034t_incidente, foreignReference: co_incidente }
+    co_recomendaciones: { type: BIGINT, required: false, foreignTable: j030t_informe_recomendaciones, foreignReference: co_informe_recomendaciones }
+    co_monitoreo: { type: BIGINT, required: false }
+    co_forense: { type: BIGINT, required: false, foreignTable: j016t_forense, foreignReference: co_forense }
+    co_depuracion: { type: BIGINT, required: false }
+    co_cumple: { type: BOOLEAN, required: false }
+    co_accion: { type: BIGINT, required: false, foreignTable: j031t_accion_recomendada, foreignReference: co_accion }
+    _indexes: { fki_co_accion17: [co_accion], fki_co_forense17: [co_forense], fki_co_incidente17: [co_incidente], fki_co_marco_normativo: [co_marco_normativo], fki_recomendaciones: [co_recomendaciones] }
+  j046t_marco_normativo:
+    _attributes: { phpName: J046tMarcoNormativo }
+    co_marco_normativo: { type: BIGINT, primaryKey: true, required: true }
+    co_documento: { type: BIGINT, required: false }
+    tx_codigo_marco: { type: VARCHAR, required: false }
+    tx_descripcion: { type: BIGINT, required: false }
+    co_created_at: { type: BIGINT, required: false }
+    co_updated_at: { type: BIGINT, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+  j047t_documento_normativo:
+    _attributes: { phpName: J047tDocumentoNormativo }
+    co_documento_normativo: { type: BIGINT, primaryKey: true, required: true }
+    co_tipo_marco: { type: BIGINT, required: false, foreignTable: j049t_tipo_marco, foreignReference: co_tipo_marco }
+    tx_titulo: { type: VARCHAR, required: false }
+    tx_descripcion: { type: VARCHAR, required: false }
+    tx_revision: { type: BIGINT, required: false }
+    co_estado: { type: BIGINT, required: false, foreignTable: j048t_estado_documento, foreignReference: co_estado_documento }
+    fe_aprueba1: { type: DATE, required: false }
+    co_aprueba1: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    fe_aprueba2: { type: DATE, required: false }
+    co_aprueba2: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    fe_elimina1: { type: DATE, required: false }
+    co_elimina1: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    fe_elimina2: { type: DATE, required: false }
+    co_elimina2: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_aprueba10: [co_aprueba1], fki_co_aprueba20: [co_aprueba2], fki_co_created_at20: [co_usuario_created], fki_co_elimina20: [co_elimina1], fki_co_elimina22: [co_elimina2], fki_co_estado_documento: [co_estado], fki_co_update_at20: [co_usuario_updated], fki_tipo_marco: [co_tipo_marco] }
+  j048t_estado_documento:
+    _attributes: { phpName: J048tEstadoDocumento }
+    co_estado_documento: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_created_at15: [co_usuario_created], fki_co_update_at15: [co_usuario_updated] }
+  j049t_tipo_marco:
+    _attributes: { phpName: J049tTipoMarco }
+    co_tipo_marco: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    tx_siglas: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_created_at24: [co_usuario_created], fki_co_update_at24: [co_usuario_updated] }
+  j050t_informe_marco:
+    _attributes: { phpName: J050tInformeMarco }
+    co_informe_marco: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
+    fe_emision: { type: DATE, required: false }
+    tx_serial: { type: VARCHAR, required: false }
+    co_tipo_revision: { type: BIGINT, required: false, foreignTable: j051t_tipo_revision, foreignReference: co_tipo_revision }
+    tx_version: { type: BIGINT, required: false }
+    co_tipo_documento: { type: BIGINT, required: false, foreignTable: j046t_marco_normativo, foreignReference: co_marco_normativo }
+    tx_titulo: { type: VARCHAR, required: false }
+    co_justificacion: { type: BIGINT, required: false, foreignTable: j052t_tipo_justificacion, foreignReference: co_tipo_justificacion }
+    tx_justificacion: { type: VARCHAR, required: false }
+    tx_descripcion: { type: LONGVARCHAR, required: false }
+    tx_observaciones: { type: LONGVARCHAR, required: false }
+    tx_ruta: { type: VARCHAR, required: false }
+    nb_archivo: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: TIMESTAMP, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_update: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_tipo_documento: [co_tipo_documento], fki_co_tipo_justificacion: [co_justificacion], fki_co_tipo_revision12: [co_tipo_revision], fki_co_usuario_created28: [co_usuario_created], fki_co_usuario_update28: [co_usuario_update] }
+  j051t_tipo_revision:
+    _attributes: { phpName: J051tTipoRevision }
+    co_tipo_revision: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: DATE, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    _indexes: { fki_co_usuario_created27: [co_usuario_created], fki_co_usuario_created29: [co_usuario_created], fki_co_usuario_update27: [co_usuario_updated], fki_co_usuario_update29: [co_usuario_updated] }
+  j052t_tipo_justificacion:
+    _attributes: { phpName: J052tTipoJustificacion }
+    co_tipo_justificacion: { type: BIGINT, primaryKey: true, required: true }
+    tx_descripcion: { type: VARCHAR, required: false }
+    created_at: { type: DATE, required: false }
+    update_at: { type: DATE, required: false }
+    co_usuario_created: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
+    co_usuario_updated: { type: BIGINT, required: false, foreignTable: j002t_usuario, foreignReference: co_usuario }
