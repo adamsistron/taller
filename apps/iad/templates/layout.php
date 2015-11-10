@@ -4,6 +4,17 @@
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <?php include_title() ?>
+    
+    <!--Estilos-->    
+    <?php echo  use_stylesheet("ext/ext-all.css") ?>
+    <?php echo use_stylesheet("ext/xtheme-slate.css") ?>
+    
+    <!--javascript-->
+    <?php echo  javascript_include_tag('ext-3.2.1/adapter/ext/ext-base.js'); ?>
+    <?php echo  javascript_include_tag('ext-3.2.1/ext-all.js'); ?>
+    <?php echo  javascript_include_tag('ext-3.2.1/locale/ext-lang-es.js'); ?>
+    <?php echo  javascript_include_tag('funciones_comunes/paqueteComun.js'); ?>
+      
     <link rel="shortcut icon" href="/favicon.ico" />
   </head>
   <body>

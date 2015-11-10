@@ -134,3 +134,239 @@ Nov 09 14:04:44 symfony [info] {sfWebDebugLogger} Configuration 0.48 ms (9)
 Nov 09 14:04:44 symfony [info] {sfWebDebugLogger} Action "default/index" 0.06 ms (1)
 Nov 09 14:04:44 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 1.19 ms (1)
 Nov 09 14:04:44 symfony [info] {sfWebResponse} Send content (27021 o)
+Nov 10 09:53:41 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 09:53:41 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 09:53:41 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 09:53:41 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /usuario with parameters array (  'module' => 'usuario',  'action' => 'index',)
+Nov 10 10:00:09 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:00:09 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:00:09 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:00:09 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /usuario with parameters array (  'module' => 'usuario',  'action' => 'index',)
+Nov 10 10:02:59 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:02:59 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:02:59 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:02:59 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /usuario with parameters array (  'module' => 'usuario',  'action' => 'index',)
+Nov 10 10:02:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:02:59 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:02:59 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:02:59 symfony [info] {usuarioActions} Call "usuarioActions->executeIndex()"
+Nov 10 10:02:59 symfony [info] {usuarioActions} Forward to action "usuario/lista"
+Nov 10 10:02:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:02:59 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:02:59 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:02:59 symfony [info] {usuarioActions} Call "usuarioActions->executeLista()"
+Nov 10 10:02:59 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/listaSuccess.php"
+Nov 10 10:02:59 symfony [info] {sfPHPView} Decorate content with "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 10 10:02:59 symfony [info] {sfPHPView} Render "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 10 10:02:59 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:02:59 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:02:59 symfony [info] {sfWebDebugLogger} Configuration 303.52 ms (15)
+Nov 10 10:02:59 symfony [info] {sfWebDebugLogger} Action "usuario/index" 47.09 ms (1)
+Nov 10 10:02:59 symfony [info] {sfWebDebugLogger} Action "usuario/lista" 0.13 ms (1)
+Nov 10 10:02:59 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/lista" 43.86 ms (1)
+Nov 10 10:02:59 symfony [info] {sfWebResponse} Send content (32267 o)
+Nov 10 10:03:00 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:03:00 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:03:00 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:03:00 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /usuario/storelista with parameters array (  'module' => 'usuario',  'action' => 'storelista',)
+Nov 10 10:03:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:03:00 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:03:00 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:03:00 symfony [info] {usuarioActions} Call "usuarioActions->executeStorelista()"
+Nov 10 10:03:00 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:03:00 symfony [debug] {sfPropelLogger} prepare: SELECT COUNT(*) FROM (SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario LIMIT 20) AS propelmatch4cnt
+Nov 10 10:03:00 symfony [debug] {sfPropelLogger} prepare: SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario ORDER BY j002t_usuario.CO_USUARIO ASC LIMIT 20
+Nov 10 10:03:00 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/storelistaSuccess.php"
+Nov 10 10:03:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:03:00 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:03:00 symfony [info] {sfWebDebugLogger} Configuration 0.53 ms (10)
+Nov 10 10:03:00 symfony [info] {sfWebDebugLogger} Action "usuario/storelista" 98.65 ms (1)
+Nov 10 10:03:00 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/storelista" 0.82 ms (1)
+Nov 10 10:03:00 symfony [info] {sfWebResponse} Send content (347 o)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /usuario/editar with parameters array (  'module' => 'usuario',  'action' => 'editar',)
+Nov 10 10:03:10 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:03:10 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:03:10 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:03:10 symfony [info] {usuarioActions} Call "usuarioActions->executeEditar()"
+Nov 10 10:03:10 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/editarSuccess.php"
+Nov 10 10:03:10 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:03:10 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:03:10 symfony [info] {sfWebDebugLogger} Configuration 0.42 ms (10)
+Nov 10 10:03:10 symfony [info] {sfWebDebugLogger} Action "usuario/editar" 0.24 ms (1)
+Nov 10 10:03:10 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/editar" 1.54 ms (1)
+Nov 10 10:03:10 symfony [info] {sfWebResponse} Send content (7496 o)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /usuario/storefkcodivision with parameters array (  'module' => 'usuario',  'action' => 'storefkcodivision',)
+Nov 10 10:03:10 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:03:10 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:03:10 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:03:10 symfony [info] {usuarioActions} Call "usuarioActions->executeStorefkcodivision()"
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /usuario/storefkcorol with parameters array (  'module' => 'usuario',  'action' => 'storefkcorol',)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /usuario/storefkcoregion with parameters array (  'module' => 'usuario',  'action' => 'storefkcoregion',)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:03:10 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /usuario/storefkconegocio with parameters array (  'module' => 'usuario',  'action' => 'storefkconegocio',)
+Nov 10 10:03:10 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:03:10 symfony [debug] {sfPropelLogger} prepare: SELECT j008t_division.CO_DIVISION, j008t_division.TX_DIVISION, j008t_division.TX_SIGLA, j008t_division.CO_NEGOCIO FROM j008t_division
+Nov 10 10:03:11 symfony [info] {usuarioActions} Change template to "CURRENT/store"
+Nov 10 10:03:11 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/storeSuccess.php"
+Nov 10 10:03:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:03:11 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:03:11 symfony [info] {sfWebDebugLogger} Configuration 0.40 ms (10)
+Nov 10 10:03:11 symfony [info] {sfWebDebugLogger} Action "usuario/storefkcodivision" 1254.17 ms (1)
+Nov 10 10:03:11 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/storefkcodivision" 0.97 ms (1)
+Nov 10 10:03:11 symfony [info] {sfWebResponse} Send content (1300 o)
+Nov 10 10:03:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:03:11 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:03:11 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:03:11 symfony [info] {usuarioActions} Call "usuarioActions->executeStorefkcorol()"
+Nov 10 10:03:14 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:03:14 symfony [debug] {sfPropelLogger} prepare: SELECT j003t_rol.CO_ROL, j003t_rol.TX_ROL FROM j003t_rol
+Nov 10 10:03:14 symfony [info] {usuarioActions} Change template to "CURRENT/store"
+Nov 10 10:03:14 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/storeSuccess.php"
+Nov 10 10:03:14 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:03:14 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:03:14 symfony [info] {sfWebDebugLogger} Configuration 0.56 ms (10)
+Nov 10 10:03:14 symfony [info] {sfWebDebugLogger} Action "usuario/storefkcorol" 2597.19 ms (1)
+Nov 10 10:03:14 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/storefkcorol" 1.02 ms (1)
+Nov 10 10:03:14 symfony [info] {sfWebResponse} Send content (176 o)
+Nov 10 10:03:14 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:03:14 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:03:14 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:03:14 symfony [info] {usuarioActions} Call "usuarioActions->executeStorefkcoregion()"
+Nov 10 10:03:15 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:03:15 symfony [debug] {sfPropelLogger} prepare: SELECT j007t_region.CO_REGION, j007t_region.TX_REGION, j007t_region.TX_SIGLA FROM j007t_region
+Nov 10 10:03:16 symfony [info] {usuarioActions} Change template to "CURRENT/store"
+Nov 10 10:03:16 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/storeSuccess.php"
+Nov 10 10:03:16 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:03:16 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:03:16 symfony [info] {sfWebDebugLogger} Configuration 0.70 ms (10)
+Nov 10 10:03:16 symfony [info] {sfWebDebugLogger} Action "usuario/storefkcoregion" 1981.15 ms (1)
+Nov 10 10:03:16 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/storefkcoregion" 3.24 ms (1)
+Nov 10 10:03:16 symfony [info] {sfWebResponse} Send content (201 o)
+Nov 10 10:03:16 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:03:16 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:03:16 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:03:16 symfony [info] {usuarioActions} Call "usuarioActions->executeStorefkconegocio()"
+Nov 10 10:03:17 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:03:17 symfony [debug] {sfPropelLogger} prepare: SELECT j014t_negocio.CO_NEGOCIO, j014t_negocio.TX_NEGOCIO, j014t_negocio.TX_SIGLA FROM j014t_negocio
+Nov 10 10:03:17 symfony [info] {usuarioActions} Change template to "CURRENT/store"
+Nov 10 10:03:17 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/storeSuccess.php"
+Nov 10 10:03:17 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:03:17 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:03:17 symfony [info] {sfWebDebugLogger} Configuration 0.66 ms (10)
+Nov 10 10:03:17 symfony [info] {sfWebDebugLogger} Action "usuario/storefkconegocio" 1001.66 ms (1)
+Nov 10 10:03:17 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/storefkconegocio" 0.94 ms (1)
+Nov 10 10:03:17 symfony [info] {sfWebResponse} Send content (1029 o)
+Nov 10 10:03:21 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:03:21 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:03:21 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:03:21 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /usuario/storelista with parameters array (  'module' => 'usuario',  'action' => 'storelista',)
+Nov 10 10:03:21 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:03:21 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:03:21 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:03:21 symfony [info] {usuarioActions} Call "usuarioActions->executeStorelista()"
+Nov 10 10:03:22 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:03:22 symfony [debug] {sfPropelLogger} prepare: SELECT COUNT(*) FROM (SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario LIMIT 20) AS propelmatch4cnt
+Nov 10 10:03:22 symfony [debug] {sfPropelLogger} prepare: SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario ORDER BY j002t_usuario.CO_USUARIO ASC LIMIT 20
+Nov 10 10:03:22 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoUsuario/templates/storelistaSuccess.php"
+Nov 10 10:03:22 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:03:22 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:03:22 symfony [info] {sfWebDebugLogger} Configuration 0.44 ms (10)
+Nov 10 10:03:22 symfony [info] {sfWebDebugLogger} Action "usuario/storelista" 1659.74 ms (1)
+Nov 10 10:03:22 symfony [info] {sfWebDebugLogger} View "Success" for "usuario/storelista" 1.95 ms (1)
+Nov 10 10:03:22 symfony [info] {sfWebResponse} Send content (347 o)
+Nov 10 10:06:41 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:06:41 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:06:41 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:06:41 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /J002tUsuario with parameters array (  'module' => 'J002tUsuario',  'action' => 'index',)
+Nov 10 10:06:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:06:41 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:06:41 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:06:41 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeIndex()"
+Nov 10 10:06:41 symfony [info] {J002tUsuarioActions} Forward to action "J002tUsuario/lista"
+Nov 10 10:06:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:06:41 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:06:41 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:06:41 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeLista()"
+Nov 10 10:06:41 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoJ002tUsuario/templates/listaSuccess.php"
+Nov 10 10:06:41 symfony [info] {sfPHPView} Decorate content with "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 10 10:06:41 symfony [info] {sfPHPView} Render "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 10 10:06:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:06:41 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:06:41 symfony [info] {sfWebDebugLogger} Configuration 122.65 ms (14)
+Nov 10 10:06:41 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/index" 2.60 ms (1)
+Nov 10 10:06:41 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/lista" 0.12 ms (1)
+Nov 10 10:06:41 symfony [info] {sfWebDebugLogger} View "Success" for "J002tUsuario/lista" 1.49 ms (1)
+Nov 10 10:06:41 symfony [info] {sfWebResponse} Send content (32497 o)
+Nov 10 10:06:42 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:06:42 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:06:42 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:06:42 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /J002tUsuario/storelista with parameters array (  'module' => 'J002tUsuario',  'action' => 'storelista',)
+Nov 10 10:06:42 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:06:42 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:06:42 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:06:42 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeStorelista()"
+Nov 10 10:06:48 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:06:58 symfony [debug] {sfPropelLogger} prepare: SELECT COUNT(*) FROM (SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario LIMIT 20) AS propelmatch4cnt
+Nov 10 10:06:58 symfony [debug] {sfPropelLogger} prepare: SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario ORDER BY j002t_usuario.CO_USUARIO ASC LIMIT 20
+Nov 10 10:06:58 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoJ002tUsuario/templates/storelistaSuccess.php"
+Nov 10 10:06:58 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:06:58 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:06:58 symfony [info] {sfWebDebugLogger} Configuration 0.41 ms (10)
+Nov 10 10:06:58 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/storelista" 16218.51 ms (1)
+Nov 10 10:06:58 symfony [info] {sfWebDebugLogger} View "Success" for "J002tUsuario/storelista" 0.85 ms (1)
+Nov 10 10:06:58 symfony [info] {sfWebResponse} Send content (347 o)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /J002tUsuario with parameters array (  'module' => 'J002tUsuario',  'action' => 'index',)
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:17:05 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeIndex()"
+Nov 10 10:17:05 symfony [info] {J002tUsuarioActions} Forward to action "J002tUsuario/lista"
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:17:05 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeLista()"
+Nov 10 10:17:05 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoJ002tUsuario/templates/listaSuccess.php"
+Nov 10 10:17:05 symfony [info] {sfPHPView} Decorate content with "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 10 10:17:05 symfony [info] {sfPHPView} Render "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 10 10:17:05 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:17:05 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:17:05 symfony [info] {sfWebDebugLogger} Configuration 0.50 ms (14)
+Nov 10 10:17:05 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/index" 2.01 ms (1)
+Nov 10 10:17:05 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/lista" 0.11 ms (1)
+Nov 10 10:17:05 symfony [info] {sfWebDebugLogger} View "Success" for "J002tUsuario/lista" 1.12 ms (1)
+Nov 10 10:17:05 symfony [info] {sfWebResponse} Send content (32525 o)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 10 10:17:05 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /J002tUsuario/storelista with parameters array (  'module' => 'J002tUsuario',  'action' => 'storelista',)
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 10 10:17:05 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 10 10:17:05 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeStorelista()"
+Nov 10 10:17:06 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 10 10:17:06 symfony [debug] {sfPropelLogger} prepare: SELECT COUNT(*) FROM (SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario LIMIT 20) AS propelmatch4cnt
+Nov 10 10:17:06 symfony [debug] {sfPropelLogger} prepare: SELECT j002t_usuario.CO_USUARIO, j002t_usuario.TX_INDICADOR, j002t_usuario.NB_EMPLEADO, j002t_usuario.AP_EMPLEADO, j002t_usuario.CO_DIVISION, j002t_usuario.CO_ROL, j002t_usuario.CO_REGION, j002t_usuario.CO_NEGOCIO FROM j002t_usuario ORDER BY j002t_usuario.CO_USUARIO ASC LIMIT 20
+Nov 10 10:17:06 symfony [info] {sfPHPView} Render "/var/www/html/taller/cache/iad/dev/modules/autoJ002tUsuario/templates/storelistaSuccess.php"
+Nov 10 10:17:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 10 10:17:06 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 10 10:17:06 symfony [info] {sfWebDebugLogger} Configuration 0.40 ms (10)
+Nov 10 10:17:06 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/storelista" 323.85 ms (1)
+Nov 10 10:17:06 symfony [info] {sfWebDebugLogger} View "Success" for "J002tUsuario/storelista" 0.95 ms (1)
+Nov 10 10:17:06 symfony [info] {sfWebResponse} Send content (347 o)

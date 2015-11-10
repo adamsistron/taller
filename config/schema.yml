@@ -34,11 +34,12 @@ propel:
     _attributes: { phpName: J001tMenu }
     co_menu: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
     tx_menu: { type: VARCHAR, required: false }
-    co_padre: { type: BIGINT, required: false }
+    co_padre: { type: BIGINT, required: false, foreignTable: j001t_menu, foreignReference: co_menu }
     tx_href: { type: VARCHAR, required: false }
     tx_icono: { type: VARCHAR, required: false }
     nu_orden: { type: BIGINT, required: false }
     tx_sigla: { type: VARCHAR, required: false }
+    _indexes: { fki_padre: [co_padre] }
   j002t_usuario:
     _attributes: { phpName: J002tUsuario }
     co_usuario: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
