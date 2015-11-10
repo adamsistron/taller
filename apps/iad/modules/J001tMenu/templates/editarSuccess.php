@@ -16,7 +16,7 @@ this.co_menu = new Ext.form.Hidden({
 
 
 this.tx_menu = new Ext.form.TextField({
-	fieldLabel:'Tx menu',
+	fieldLabel:'Menu',
 	name:'j001t_menu[tx_menu]',
 	value:this.OBJ.tx_menu,
 	allowBlank:false,
@@ -35,14 +35,15 @@ this.co_padre = new Ext.form.ComboBox({
 	forceSelection:true,
 	resizable:true,
 	triggerAction: 'all',
-	emptyText:'Seleccione co_padre',
+	emptyText:'Seleccione ...',
 	selectOnFocus: true,
-	mode: 'local',
+	//mode: 'local',
+	mode: 'remote',
 	width:200,
 	resizable:true,
 	allowBlank:false
 });
-this.storeCO_MENU.load();
+//this.storeCO_MENU.load();
 	paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_padre,
 	value:  this.OBJ.co_padre,
