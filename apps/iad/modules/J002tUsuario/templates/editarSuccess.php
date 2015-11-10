@@ -197,24 +197,46 @@ this.salir = new Ext.Button({
         J002tUsuarioEditar.main.winformPanel_.close();
     }
 });
-
+this.fielset1 = new Ext.form.FieldSet({
+            layout: 'fit',
+            anchor: '-0',
+            collapsible: true,
+            autoHeight:true,
+            title: 'Usuarios',
+            items: [
+                    this.co_usuario,
+                    this.tx_indicador,
+                    this.nb_empleado,
+                    this.ap_empleado,
+            ]
+        });
+this.fielset2 = new Ext.form.FieldSet({
+            layout: 'fit',
+            anchor: '-0',
+            collapsible: true,
+            autoHeight:true,
+            title: 'Ubicación',
+            items: [
+                    this.co_division,
+                    this.co_rol,
+                    this.co_region,
+                    this.co_negocio, 
+            ]
+        });
+        
 this.formPanel_ = new Ext.form.FormPanel({
+    
+    
     frame:true,
     width:400,
 autoHeight:true,  
     autoScroll:true,
     bodyStyle:'padding:10px;',
-    items:[
 
-                    this.co_usuario,
-                    this.tx_indicador,
-                    this.nb_empleado,
-                    this.ap_empleado,
-                    this.co_division,
-                    this.co_rol,
-                    this.co_region,
-                    this.co_negocio,
-            ]
+            items:[this.fielset1,
+                this.fielset2
+    ]
+    
 });
 
 this.winformPanel_ = new Ext.Window({
