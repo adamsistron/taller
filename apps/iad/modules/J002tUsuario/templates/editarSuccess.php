@@ -33,7 +33,7 @@ this.tx_indicador = new Ext.form.TextField({
 });
 
 this.nb_empleado = new Ext.form.TextField({
-	fieldLabel:'Nb empleado',
+//	fieldLabel:'Nb empleado',
 	name:'j002t_usuario[nb_empleado]',
 	value:this.OBJ.nb_empleado,
 	allowBlank:false,
@@ -198,44 +198,73 @@ this.salir = new Ext.Button({
     }
 });
 this.fielset1 = new Ext.form.FieldSet({
-            layout: 'fit',
-            anchor: '-0',
-            collapsible: true,
-            autoHeight:true,
-            title: 'Usuarios',
+
+            title: 'Datos de Usuario',
             items: [
-                    this.co_usuario,
-                    this.tx_indicador,
-                    this.nb_empleado,
-                    this.ap_empleado,
+                {
+                    xtype: 'compositefield',
+                    fieldLabel:'Datos Usuario',
+                    items: [                    
+                    
+                    {
+                        xtype: 'displayfield',
+                        value: 'Indicador'
+                    },this.tx_indicador,
+                    {
+                        xtype: 'displayfield',
+                        value: 'Nombre'
+                    },this.nb_empleado,
+                    {
+                        xtype: 'displayfield',
+                        value: 'Apellido'
+                    },this.ap_empleado,
+                    {
+                        xtype: 'displayfield',
+                        value: 'Rol'
+                    },this.co_rol,
+                ]}
             ]
         });
 this.fielset2 = new Ext.form.FieldSet({
-            layout: 'fit',
-            anchor: '-0',
-            collapsible: true,
-            autoHeight:true,
-            title: 'Ubicación',
+            title: 'Ubicación de Usuario',
             items: [
-                    this.co_division,
-                    this.co_rol,
-                    this.co_region,
-                    this.co_negocio, 
-            ]
+                {
+                    xtype: 'compositefield',
+                    fieldLabel:'Datos Ubicación',
+                        items: [
+                        {
+                            xtype: 'displayfield',
+                            value: 'División'
+                        },this.co_division,
+                        {
+                            xtype: 'displayfield',
+                            value: 'Región'
+                        },this.co_region,
+                        {
+                            xtype: 'displayfield',
+                            value: 'Negocio'
+                        },this.co_negocio
+                    ]
+            }
+                     
+            ],
+                 
         });
+     
         
 this.formPanel_ = new Ext.form.FormPanel({
     
     
     frame:true,
-    width:400,
-autoHeight:true,  
+    width:1400,
+//autoHeight:true,  
     autoScroll:true,
     bodyStyle:'padding:10px;',
 
-            items:[this.fielset1,
+            items:[
+                this.fielset1,
                 this.fielset2
-    ]
+            ]
     
 });
 
@@ -243,7 +272,8 @@ this.winformPanel_ = new Ext.Window({
     title:'Formulario: J002tUsuario',
     modal:true,
     constrain:true,
-width:400,
+    width:1400,
+//autoWidth:true,
     frame:true,
     closabled:true,
     autoHeight:true,
