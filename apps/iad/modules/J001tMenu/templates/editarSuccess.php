@@ -130,8 +130,8 @@ this.salir = new Ext.Button({
 this.formPanel_ = new Ext.form.FormPanel({
     frame:true,
     width:400,
-//autoHeight:true,  
-    heigth:400,
+    autoHeight:true,  
+    //heigth:400,
     autoScroll:true,
     bodyStyle:'padding:10px;',
     items:[
@@ -153,8 +153,8 @@ this.winformPanel_ = new Ext.Window({
     width:400,
     frame:true,
     closabled:true,
-    //autoHeight:true,
-    height:400,
+    autoHeight:true,
+    //height:400,
     items:[
         this.formPanel_
     ],

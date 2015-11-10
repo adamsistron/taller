@@ -104,7 +104,7 @@ this.gridPanel_ = new Ext.grid.GridPanel({
     {header: 'co_menu',hidden:true, menuDisabled:true,dataIndex: 'co_menu'},
     {header: 'Tx menu', width:100,  menuDisabled:true, sortable: true,  dataIndex: 'tx_menu'},
     {header: 'Co padre', width:100,  menuDisabled:true, sortable: true,  dataIndex: 'co_padre'},
-    {header: 'Tx href', width:100,  menuDisabled:true, sortable: true,  dataIndex: 'tx_href'},
+    {header: 'Href', width:100,  menuDisabled:true, sortable: true,  dataIndex: 'tx_href'},
     {header: 'Tx icono', width:100,  menuDisabled:true, sortable: true,  dataIndex: 'tx_icono'},
     {header: 'Nu orden', width:100,  menuDisabled:true, sortable: true,  dataIndex: 'nu_orden'},
     {header: 'Tx sigla', width:100,  menuDisabled:true, sortable: true,  dataIndex: 'tx_sigla'},
