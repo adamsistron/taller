@@ -37,13 +37,13 @@ this.co_padre = new Ext.form.ComboBox({
 	triggerAction: 'all',
 	emptyText:'Seleccione ...',
 	selectOnFocus: true,
-	//mode: 'local',
-	mode: 'remote',
+	mode: 'local',
+	//mode: 'remote',
 	width:200,
 	resizable:true,
 	allowBlank:false
 });
-//this.storeCO_MENU.load();
+this.storeCO_MENU.load();
 	paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_padre,
 	value:  this.OBJ.co_padre,
@@ -130,7 +130,8 @@ this.salir = new Ext.Button({
 this.formPanel_ = new Ext.form.FormPanel({
     frame:true,
     width:400,
-autoHeight:true,  
+//autoHeight:true,  
+    heigth:400,
     autoScroll:true,
     bodyStyle:'padding:10px;',
     items:[
@@ -149,10 +150,11 @@ this.winformPanel_ = new Ext.Window({
     title:'Formulario: J001tMenu',
     modal:true,
     constrain:true,
-width:400,
+    width:400,
     frame:true,
     closabled:true,
-    autoHeight:true,
+    //autoHeight:true,
+    height:400,
     items:[
         this.formPanel_
     ],
