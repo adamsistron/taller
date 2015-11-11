@@ -119,7 +119,11 @@ this.co_region = new Ext.form.ComboBox({
 	resizable:true,
 	allowBlank:false,
         listeners:{
-            change: function(){
+            select: function(){
+                J002tUsuarioEditar.main.storeCO_NEGOCIO.removeAll();
+                J002tUsuarioEditar.main.co_negocio.setValue('');        
+                J002tUsuarioEditar.main.storeCO_DIVISION.removeAll();
+                J002tUsuarioEditar.main.co_division.setValue('');
                 J002tUsuarioEditar.main.storeCO_NEGOCIO.load({
                     params:{
                         co_region:this.getValue()
@@ -134,6 +138,14 @@ this.storeCO_REGION.load();
 	value:  this.OBJ.co_region,
 	objStore: this.storeCO_REGION,
 });
+
+if(this.OBJ.co_region!=''){
+    J002tUsuarioEditar.main.storeCO_NEGOCIO.load({
+                    params:{
+                        co_region:J002tUsuarioEditar.main.OBJ.co_region
+                    }
+                });
+}
 
 this.co_negocio = new Ext.form.ComboBox({
 	fieldLabel:'Co negocio',
@@ -154,10 +166,15 @@ this.co_negocio = new Ext.form.ComboBox({
 	resizable:true,
 	allowBlank:false,
         listeners:{
-            change: function(){
+            select: function(){
+                J002tUsuarioEditar.main.storeCO_DIVISION.removeAll();
+                J002tUsuarioEditar.main.co_division.setValue('');
+                
                 J002tUsuarioEditar.main.storeCO_DIVISION.load({
-                    params:{
-                        co_negocio:this.getValue()
+                params:{
+                        co_negocio:this.getValue(),
+                        co_region:J002tUsuarioEditar.main.co_region.getValue()
+                        
                     }
                 });
             }
@@ -169,6 +186,16 @@ this.co_negocio = new Ext.form.ComboBox({
 	value:  this.OBJ.co_negocio,
 	objStore: this.storeCO_NEGOCIO
 });
+
+
+if(this.OBJ.co_negocio!=''){
+    J002tUsuarioEditar.main.storeCO_DIVISION.load({
+                    params:{
+                        co_region:J002tUsuarioEditar.main.OBJ.co_region,
+                        co_negocio:J002tUsuarioEditar.main.OBJ.co_negocio
+                    }
+                });
+}
 
 this.guardar = new Ext.Button({
     text:'Guardar',
@@ -284,6 +311,7 @@ this.formPanel_ = new Ext.form.FormPanel({
     bodyStyle:'padding:10px;',
 
             items:[
+                this.co_usuario,
                 this.fielset1,
                 this.fielset2
             ]

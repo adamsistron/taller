@@ -213,6 +213,7 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
                                                         //modelo fk j008t_division.CO_DIVISION
     public function executeStorefkcodivision(sfWebRequest $request){
         
+        $codigo_region = $this->getRequestParameter("co_region");
         $codigo_negocio = $this->getRequestParameter("co_negocio");
         
         $c = new Criteria();
@@ -225,7 +226,9 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
         $c->addJoin(J014tNegocioPeer::CO_NEGOCIO, J015tRegionNegocioPeer::CO_NEGOCIO);
         $c->addJoin(J008tDivisionPeer::CO_DIVISION, J015tRegionNegocioPeer::CO_DIVISION);
         //Agregar el Where
+        $c->add(J015tRegionNegocioPeer::CO_REGION,$codigo_region);
         $c->add(J014tNegocioPeer::CO_NEGOCIO,$codigo_negocio);
+        //Agregar Orden
         $c->addAscendingOrderByColumn(J008tDivisionPeer::TX_DIVISION);
         /*
         SELECT 
@@ -295,6 +298,7 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
         //Limpiar todas las columnas seleccionadas del Query
         $c->clearSelectColumns();
         //Selecciona los campos a retornar en el Query
+        $c->setDistinct();
         $c->addSelectColumn(J014tNegocioPeer::CO_NEGOCIO);
         $c->addSelectColumn(J014tNegocioPeer::TX_NEGOCIO);
         //Agregar los Join
