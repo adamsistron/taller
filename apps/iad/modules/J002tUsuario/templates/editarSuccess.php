@@ -68,11 +68,24 @@ this.co_division = new Ext.form.ComboBox({
 	allowBlank:false
 });
 //this.storeCO_DIVISION.load();
-	paqueteComunJS.funcion.seleccionarComboByCo({
+/*
+    paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_division,
 	value:  this.OBJ.co_division,
 	objStore: this.storeCO_DIVISION
-});
+});*/
+
+if(this.OBJ.co_division!=''){
+    J002tUsuarioEditar.main.storeCO_DIVISION.load({
+                    params:{
+                        co_negocio:J002tUsuarioEditar.main.OBJ.co_negocio,
+                        co_region:J002tUsuarioEditar.main.OBJ.co_region
+                    },
+                callback: function(){
+                    J002tUsuarioEditar.main.co_division.setValue(J002tUsuarioEditar.main.OBJ.co_division);
+                }   
+                });
+}
 
 this.co_rol = new Ext.form.ComboBox({
 	fieldLabel:'Co rol',
@@ -132,6 +145,7 @@ this.co_region = new Ext.form.ComboBox({
             }
         }
 });
+
 this.storeCO_REGION.load();
 	paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_region,
@@ -143,7 +157,10 @@ if(this.OBJ.co_region!=''){
     J002tUsuarioEditar.main.storeCO_NEGOCIO.load({
                     params:{
                         co_region:J002tUsuarioEditar.main.OBJ.co_region
-                    }
+                    },
+                callback: function(){
+                    J002tUsuarioEditar.main.co_negocio.setValue(J002tUsuarioEditar.main.OBJ.co_negocio);
+                }   
                 });
 }
 
@@ -175,25 +192,29 @@ this.co_negocio = new Ext.form.ComboBox({
                         co_negocio:this.getValue(),
                         co_region:J002tUsuarioEditar.main.co_region.getValue()
                         
-                    }
+                    }    
                 });
             }
         }
 });
 //this.storeCO_NEGOCIO.load();
+/*
 	paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_negocio,
 	value:  this.OBJ.co_negocio,
 	objStore: this.storeCO_NEGOCIO
 });
-
+*/
 
 if(this.OBJ.co_negocio!=''){
     J002tUsuarioEditar.main.storeCO_DIVISION.load({
                     params:{
                         co_region:J002tUsuarioEditar.main.OBJ.co_region,
                         co_negocio:J002tUsuarioEditar.main.OBJ.co_negocio
-                    }
+                    },
+                callback: function(){
+                    J002tUsuarioEditar.main.co_division.setValue(J002tUsuarioEditar.main.OBJ.co_division);
+                }
                 });
 }
 
