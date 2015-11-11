@@ -370,3 +370,49 @@ Nov 10 10:17:06 symfony [info] {sfWebDebugLogger} Configuration 0.40 ms (10)
 Nov 10 10:17:06 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/storelista" 323.85 ms (1)
 Nov 10 10:17:06 symfony [info] {sfWebDebugLogger} View "Success" for "J002tUsuario/storelista" 0.95 ms (1)
 Nov 10 10:17:06 symfony [info] {sfWebResponse} Send content (347 o)
+Nov 11 14:40:40 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 11 14:40:40 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 11 14:40:40 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 11 14:40:40 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /J002tUsuario/storefkcodivision with parameters array (  'module' => 'J002tUsuario',  'action' => 'storefkcodivision',)
+Nov 11 14:40:40 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 11 14:40:40 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 11 14:40:40 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 11 14:40:40 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeStorefkcodivision()"
+Nov 11 14:40:40 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 11 14:40:40 symfony [debug] {sfPropelLogger} prepare: SELECT j008t_division.CO_DIVISION, j008t_division.TX_DIVISION FROM j008t_division, j015t_region_negocio, j014t_negocio WHERE j015t_region_negocio.CO_REGION=:p1 AND j014t_negocio.CO_NEGOCIO=:p2 AND j014t_negocio.CO_NEGOCIO=j015t_region_negocio.CO_NEGOCIO AND j008t_division.CO_DIVISION=j015t_region_negocio.CO_DIVISION ORDER BY j008t_division.TX_DIVISION ASC
+Nov 11 14:40:40 symfony [debug] {sfPropelLogger} Binding '2' at position :p1 w/ PDO type PDO::PARAM_STR
+Nov 11 14:40:40 symfony [debug] {sfPropelLogger} Binding '' at position :p2 w/ PDO type PDO::PARAM_STR
+Nov 11 14:40:40 symfony [err] {sfPropelLogger} SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""
+Nov 11 14:40:40 symfony [err] {PropelException}  [wrapped: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for integer: ""]
+Nov 11 14:40:40 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Nov 11 14:40:40 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 11 15:14:19 symfony [info] {sfPatternRouting} Connect sfRoute "homepage" (/)
+Nov 11 15:14:19 symfony [info] {sfPatternRouting} Connect sfRoute "default_index" (/:module)
+Nov 11 15:14:19 symfony [info] {sfPatternRouting} Connect sfRoute "default" (/:module/:action/*)
+Nov 11 15:14:19 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /J002tUsuario/guardar with parameters array (  'module' => 'J002tUsuario',  'action' => 'guardar',)
+Nov 11 15:14:19 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 11 15:14:19 symfony [info] {sfFilterChain} Executing filter "sfCommonFilter"
+Nov 11 15:14:19 symfony [info] {sfFilterChain} Executing filter "sfValidationExecutionFilter"
+Nov 11 15:14:19 symfony [info] {J002tUsuarioActions} Call "J002tUsuarioActions->executeGuardar()"
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} exec: SET NAMES 'utf8'
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} query: SELECT nextval('j002t_usuario_co_usuario_seq')
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} prepare: INSERT INTO j002t_usuario (CO_USUARIO,TX_INDICADOR,NB_EMPLEADO,AP_EMPLEADO,CO_DIVISION,CO_ROL,CO_REGION,CO_NEGOCIO) VALUES (:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8)
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding 21 at position :p1 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding 'www' at position :p2 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding 'qqq' at position :p3 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding 'qqq' at position :p4 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding '12' at position :p5 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding '2' at position :p6 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding '2' at position :p7 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [debug] {sfPropelLogger} Binding '13' at position :p8 w/ PDO type PDO::PARAM_STR
+Nov 11 15:14:22 symfony [err] {sfPropelLogger} SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "uk_tx_indicador"
+DETAIL:  Key (tx_indicador)=(www) already exists.
+Nov 11 15:14:22 symfony [info] {sfPHPView} Render "/var/www/html/taller/apps/iad/modules/J002tUsuario/templates/guardarSuccess.php"
+Nov 11 15:14:22 symfony [info] {sfPHPView} Decorate content with "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 11 15:14:22 symfony [info] {sfPHPView} Render "/var/www/html/taller/apps/iad/templates/layout.php"
+Nov 11 15:14:22 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 11 15:14:22 symfony [info] {sfWebResponse} Send header "Content-type: text/html"
+Nov 11 15:14:22 symfony [info] {sfWebDebugLogger} Configuration 45.52 ms (11)
+Nov 11 15:14:22 symfony [info] {sfWebDebugLogger} Action "J002tUsuario/guardar" 3199.19 ms (1)
+Nov 11 15:14:22 symfony [info] {sfWebDebugLogger} View "Success" for "J002tUsuario/guardar" 79.75 ms (1)
+Nov 11 15:14:22 symfony [info] {sfWebResponse} Send content (27509 o)
