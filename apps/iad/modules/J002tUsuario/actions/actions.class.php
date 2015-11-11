@@ -212,7 +212,35 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
 
                                                         //modelo fk j008t_division.CO_DIVISION
     public function executeStorefkcodivision(sfWebRequest $request){
+        
+        $codigo_negocio = $this->getRequestParameter("co_negocio");
+        
         $c = new Criteria();
+        //Limpiar todas las columnas seleccionadas del Query
+        $c->clearSelectColumns();
+        //Selecciona los campos a retornar en el Query
+        $c->addSelectColumn(J008tDivisionPeer::CO_DIVISION);
+        $c->addSelectColumn(J008tDivisionPeer::TX_DIVISION);
+        //Agregar los Join
+        $c->addJoin(J014tNegocioPeer::CO_NEGOCIO, J015tRegionNegocioPeer::CO_NEGOCIO);
+        $c->addJoin(J008tDivisionPeer::CO_DIVISION, J015tRegionNegocioPeer::CO_DIVISION);
+        //Agregar el Where
+        $c->add(J014tNegocioPeer::CO_NEGOCIO,$codigo_negocio);
+        $c->addAscendingOrderByColumn(J008tDivisionPeer::TX_DIVISION);
+        /*
+        SELECT 
+            j008t_division.co_division, 
+            j008t_division.tx_division
+        FROM 
+            public.j014t_negocio, 
+            public.j015t_region_negocio, 
+            public.j008t_division
+        WHERE 
+            j014t_negocio.co_negocio = j015t_region_negocio.co_negocio AND
+            j008t_division.co_division = j015t_region_negocio.co_division AND
+            j014t_negocio.co_negocio = 32;
+        */
+        
         $stmt = J008tDivisionPeer::doSelectStmt($c);
         $registros = array();
         while($reg = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -260,7 +288,35 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
     }
                     //modelo fk j014t_negocio.CO_NEGOCIO
     public function executeStorefkconegocio(sfWebRequest $request){
+        
+        $codigo_region = $this->getRequestParameter("co_region");
+        
         $c = new Criteria();
+        //Limpiar todas las columnas seleccionadas del Query
+        $c->clearSelectColumns();
+        //Selecciona los campos a retornar en el Query
+        $c->addSelectColumn(J014tNegocioPeer::CO_NEGOCIO);
+        $c->addSelectColumn(J014tNegocioPeer::TX_NEGOCIO);
+        //Agregar los Join
+        $c->addJoin(J007tRegionPeer::CO_REGION, J015tRegionNegocioPeer::CO_REGION);
+        $c->addJoin(J014tNegocioPeer::CO_NEGOCIO, J015tRegionNegocioPeer::CO_NEGOCIO);
+        //Agregar el Where
+        $c->add(J007tRegionPeer::CO_REGION,$codigo_region);
+        $c->addAscendingOrderByColumn(J014tNegocioPeer::TX_NEGOCIO);
+        /*
+         SELECT 
+            j014t_negocio.co_negocio, 
+            j014t_negocio.tx_negocio
+        FROM 
+            public.j007t_region, 
+            public.j014t_negocio, 
+            public.j015t_region_negocio
+        WHERE 
+            j007t_region.co_region = j015t_region_negocio.co_region AND
+            j014t_negocio.co_negocio = j015t_region_negocio.co_negocio AND
+            j007t_region.co_region = 1; 
+        */
+        //Query simple "SELECT * FROM" de la Tabla J014tNegocioPeer
         $stmt = J014tNegocioPeer::doSelectStmt($c);
         $registros = array();
         while($reg = $stmt->fetch(PDO::FETCH_ASSOC)){

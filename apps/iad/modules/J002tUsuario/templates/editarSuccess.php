@@ -67,7 +67,7 @@ this.co_division = new Ext.form.ComboBox({
 	resizable:true,
 	allowBlank:false
 });
-this.storeCO_DIVISION.load();
+//this.storeCO_DIVISION.load();
 	paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_division,
 	value:  this.OBJ.co_division,
@@ -117,13 +117,22 @@ this.co_region = new Ext.form.ComboBox({
 	mode: 'local',
 	width:200,
 	resizable:true,
-	allowBlank:false
+	allowBlank:false,
+        listeners:{
+            change: function(){
+                J002tUsuarioEditar.main.storeCO_NEGOCIO.load({
+                    params:{
+                        co_region:this.getValue()
+                    }
+                });
+            }
+        }
 });
 this.storeCO_REGION.load();
 	paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_region,
 	value:  this.OBJ.co_region,
-	objStore: this.storeCO_REGION
+	objStore: this.storeCO_REGION,
 });
 
 this.co_negocio = new Ext.form.ComboBox({
@@ -143,9 +152,18 @@ this.co_negocio = new Ext.form.ComboBox({
 	mode: 'local',
 	width:200,
 	resizable:true,
-	allowBlank:false
+	allowBlank:false,
+        listeners:{
+            change: function(){
+                J002tUsuarioEditar.main.storeCO_DIVISION.load({
+                    params:{
+                        co_negocio:this.getValue()
+                    }
+                });
+            }
+        }
 });
-this.storeCO_NEGOCIO.load();
+//this.storeCO_NEGOCIO.load();
 	paqueteComunJS.funcion.seleccionarComboByCo({
 	objCMB: this.co_negocio,
 	value:  this.OBJ.co_negocio,
@@ -243,7 +261,11 @@ this.fielset2 = new Ext.form.FieldSet({
                         {
                             xtype: 'displayfield',
                             value: 'Negocio'
-                        },this.co_negocio
+                        },this.co_negocio,
+                        {
+                            xtype: 'displayfield',
+                            value: 'División'
+                        },this.co_division,
                     ]
             }
                      
