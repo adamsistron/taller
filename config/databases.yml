@@ -14,9 +14,9 @@ all:
     param:
       classname:  PropelPDO
 #      dsn:        mysql:dbname=taller;host=localhost
-      dsn:        pgsql:dbname=sti;host=162.122.74.96
+      dsn:        pgsql:dbname=sti;host=localhost
       username:   postgres
-      password:   postgres123
+      password:   postgres
       encoding:   utf8
       persistent: true
       pooling:    true
