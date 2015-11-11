@@ -51,6 +51,7 @@ propel:
     co_region: { type: BIGINT, required: false, foreignTable: j007t_region, foreignReference: co_region }
     co_negocio: { type: BIGINT, required: false, foreignTable: j014t_negocio, foreignReference: co_negocio }
     _indexes: { fki_co_division: [co_division], fki_co_negocio13: [co_negocio], fki_co_region_usuario: [co_region], fki_co_rol: [co_rol] }
+    _uniques: { uk_tx_indicador: [tx_indicador] }
   j003t_rol:
     _attributes: { phpName: J003tRol }
     co_rol: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
@@ -154,7 +155,8 @@ propel:
     co_region: { type: BIGINT, required: true, foreignTable: j007t_region, foreignReference: co_region }
     co_negocio: { type: BIGINT, required: true, foreignTable: j014t_negocio, foreignReference: co_negocio }
     co_region_negocio: { type: BIGINT, primaryKey: true, required: true }
-    _indexes: { fki_negocio_reg: [co_negocio] }
+    co_division: { type: BIGINT, required: false, foreignTable: j008t_division, foreignReference: co_division }
+    _indexes: { fki_co_division100: [co_division], fki_negocio_reg: [co_negocio] }
   j016t_forense:
     _attributes: { phpName: J016tForense }
     co_forense: { type: BIGINT, primaryKey: true, autoIncrement: true, required: true }
