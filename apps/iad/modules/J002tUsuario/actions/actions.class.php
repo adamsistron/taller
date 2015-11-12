@@ -155,7 +155,7 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
     $paginar    =   $this->getRequestParameter("paginar");
     $limit      =   $this->getRequestParameter("limit",20);
     $start      =   $this->getRequestParameter("start",0);
-                $tx_indicador      =   $this->getRequestParameter("tx_indicador");
+            $tx_indicador      =   $this->getRequestParameter("tx_indicador");
             $nb_empleado      =   $this->getRequestParameter("nb_empleado");
             $ap_empleado      =   $this->getRequestParameter("ap_empleado");
             $co_division      =   $this->getRequestParameter("co_division");
@@ -187,22 +187,19 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
         $c->addAscendingOrderByColumn(J002tUsuarioPeer::CO_USUARIO);
     
     if($this->getRequestParameter("BuscarBy")=="true"){
-                                if($tx_indicador!=""){$c->add(J002tUsuarioPeer::TX_INDICADOR,'%'.$tx_indicador.'%',Criteria::LIKE);}
-        
-                                        if($nb_empleado!=""){$c->add(J002tUsuarioPeer::NB_EMPLEADO,'%'.$nb_empleado.'%',Criteria::LIKE);}
-        
-                                        if($ap_empleado!=""){$c->add(J002tUsuarioPeer::AP_EMPLEADO,'%'.$ap_empleado.'%',Criteria::LIKE);}
-        
-                                            if($co_division!=""){
-                                                $c->add(J002tUsuarioPeer::CO_DIVISION,$co_division);
-                                                
-                                            }
-    
-                                            if($co_rol!=""){$c->add(J002tUsuarioPeer::CO_ROL,$co_rol);}
-    
-                                            if($co_region!=""){$c->add(J002tUsuarioPeer::CO_REGION,$co_region);}
-    
-                                            if($co_negocio!=""){$c->add(J002tUsuarioPeer::CO_NEGOCIO,$co_negocio);}
+                    if($tx_indicador!=""){$c->add(J002tUsuarioPeer::TX_INDICADOR,'%'.$tx_indicador.'%',Criteria::LIKE);}
+
+                    if($nb_empleado!=""){$c->add(J002tUsuarioPeer::NB_EMPLEADO,'%'.$nb_empleado.'%',Criteria::LIKE);}
+
+                    if($ap_empleado!=""){$c->add(J002tUsuarioPeer::AP_EMPLEADO,'%'.$ap_empleado.'%',Criteria::LIKE);}
+
+                    if($co_division!=""){$c->add(J002tUsuarioPeer::CO_DIVISION,$co_division);}
+
+                    if($co_rol!=""){$c->add(J002tUsuarioPeer::CO_ROL,$co_rol);}
+
+                    if($co_region!=""){$c->add(J002tUsuarioPeer::CO_REGION,$co_region);}
+
+                    if($co_negocio!=""){$c->add(J002tUsuarioPeer::CO_NEGOCIO,$co_negocio);}
     
                     }
                     
@@ -325,38 +322,7 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
         
         $codigo_region = $this->getRequestParameter("co_region");
         
-        $c = new Criteria();
-        //Limpiar todas las columnas seleccionadas del Query
-        $c->clearSelectColumns();
-        //Selecciona los campos a retornar en el Query
-        $c->setDistinct();
-        $c->addSelectColumn(J014tNegocioPeer::CO_NEGOCIO);
-        $c->addSelectColumn(J014tNegocioPeer::TX_NEGOCIO);
-        //Agregar los Join
-        $c->addJoin(J007tRegionPeer::CO_REGION, J015tRegionNegocioPeer::CO_REGION);
-        $c->addJoin(J014tNegocioPeer::CO_NEGOCIO, J015tRegionNegocioPeer::CO_NEGOCIO);
-        //Agregar el Where
-        $c->add(J007tRegionPeer::CO_REGION,$codigo_region);
-        $c->addAscendingOrderByColumn(J014tNegocioPeer::TX_NEGOCIO);
-        /*
-         SELECT 
-            j014t_negocio.co_negocio, 
-            j014t_negocio.tx_negocio
-        FROM 
-            public.j007t_region, 
-            public.j014t_negocio, 
-            public.j015t_region_negocio
-        WHERE 
-            j007t_region.co_region = j015t_region_negocio.co_region AND
-            j014t_negocio.co_negocio = j015t_region_negocio.co_negocio AND
-            j007t_region.co_region = 1; 
-        */
-        //Query simple "SELECT * FROM" de la Tabla J014tNegocioPeer
-        $stmt = J014tNegocioPeer::doSelectStmt($c);
-        $registros = array();
-        while($reg = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $registros[] = $reg;
-        }
+        $registros = J002tUsuarioPeer::getNegocios($codigo_region);
 
         $this->data = json_encode(array(
             "success"   =>  true,

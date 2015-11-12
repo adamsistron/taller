@@ -41,7 +41,7 @@ this.co_division = new Ext.form.ComboBox({
 	store: this.storeCO_DIVISION,
 	typeAhead: true,
 	valueField: 'co_division',
-	displayField:'co_division',
+	displayField:'tx_division',
 	hiddenName:'co_division',
 	//readOnly:(this.OBJ.co_division!='')?true:false,
 	//style:(this.main.OBJ.co_division!='')?'background:#c9c9c9;':'',
@@ -62,7 +62,7 @@ this.co_rol = new Ext.form.ComboBox({
 	store: this.storeCO_ROL,
 	typeAhead: true,
 	valueField: 'co_rol',
-	displayField:'co_rol',
+	displayField:'tx_rol',
 	hiddenName:'co_rol',
 	//readOnly:(this.OBJ.co_rol!='')?true:false,
 	//style:(this.main.OBJ.co_rol!='')?'background:#c9c9c9;':'',
@@ -83,7 +83,7 @@ this.co_region = new Ext.form.ComboBox({
 	store: this.storeCO_REGION,
 	typeAhead: true,
 	valueField: 'co_region',
-	displayField:'co_region',
+	displayField:'tx_region',
 	hiddenName:'co_region',
 	//readOnly:(this.OBJ.co_region!='')?true:false,
 	//style:(this.main.OBJ.co_region!='')?'background:#c9c9c9;':'',
@@ -95,7 +95,20 @@ this.co_region = new Ext.form.ComboBox({
 	mode: 'local',
 	width:200,
 	resizable:true,
-	allowBlank:false
+	allowBlank:false,
+        listeners:{
+            select: function(){
+                J002tUsuarioFiltro.main.storeCO_NEGOCIO.removeAll();
+                J002tUsuarioFiltro.main.co_negocio.setValue('');        
+                J002tUsuarioFiltro.main.storeCO_DIVISION.removeAll();
+                J002tUsuarioFiltro.main.co_division.setValue('');
+                J002tUsuarioFiltro.main.storeCO_NEGOCIO.load({
+                    params:{
+                        co_region:this.getValue()
+                    }
+                });
+            }
+        }
 });
 this.storeCO_REGION.load();
 
@@ -104,7 +117,7 @@ this.co_negocio = new Ext.form.ComboBox({
 	store: this.storeCO_NEGOCIO,
 	typeAhead: true,
 	valueField: 'co_negocio',
-	displayField:'co_negocio',
+	displayField:'tx_negocio',
 	hiddenName:'co_negocio',
 	//readOnly:(this.OBJ.co_negocio!='')?true:false,
 	//style:(this.main.OBJ.co_negocio!='')?'background:#c9c9c9;':'',
@@ -116,9 +129,23 @@ this.co_negocio = new Ext.form.ComboBox({
 	mode: 'local',
 	width:200,
 	resizable:true,
-	allowBlank:false
+	allowBlank:false,
+        listeners:{
+            select: function(){
+                J002tUsuarioFiltro.main.storeCO_DIVISION.removeAll();
+                J002tUsuarioFiltro.main.co_division.setValue('');
+                
+                J002tUsuarioFiltro.main.storeCO_DIVISION.load({
+                params:{
+                        co_negocio:this.getValue(),
+                        co_region:J002tUsuarioFiltro.main.co_region.getValue()
+                        
+                    }    
+                });
+            }
+        }
 });
-this.storeCO_NEGOCIO.load();
+//this.storeCO_NEGOCIO.load();
 
     this.tabpanelfiltro = new Ext.TabPanel({
        activeTab:0,
@@ -130,10 +157,10 @@ this.storeCO_NEGOCIO.load();
                                                                                                             this.tx_indicador,
                                                                                 this.nb_empleado,
                                                                                 this.ap_empleado,
-                                                                                this.co_division,
                                                                                 this.co_rol,
                                                                                 this.co_region,
                                                                                 this.co_negocio,
+                                                                                this.co_division
                                            ]
                }
             ]
@@ -215,7 +242,8 @@ aplicarFiltroByFormulario: function(){
         url:'<?php echo $_SERVER["SCRIPT_NAME"] ?>/J002tUsuario/storefkcodivision',
         root:'data',
         fields:[
-            {name: 'co_division'}
+            {name: 'co_division'},
+            {name: 'tx_division'}
             ]
     });
     return this.store;
@@ -225,7 +253,8 @@ aplicarFiltroByFormulario: function(){
         url:'<?php echo $_SERVER["SCRIPT_NAME"] ?>/J002tUsuario/storefkcorol',
         root:'data',
         fields:[
-            {name: 'co_rol'}
+            {name: 'co_rol'},
+            {name: 'tx_rol'}
             ]
     });
     return this.store;
@@ -235,7 +264,8 @@ aplicarFiltroByFormulario: function(){
         url:'<?php echo $_SERVER["SCRIPT_NAME"] ?>/J002tUsuario/storefkcoregion',
         root:'data',
         fields:[
-            {name: 'co_region'}
+            {name: 'co_region'},
+            {name: 'tx_region'}
             ]
     });
     return this.store;
@@ -245,7 +275,8 @@ aplicarFiltroByFormulario: function(){
         url:'<?php echo $_SERVER["SCRIPT_NAME"] ?>/J002tUsuario/storefkconegocio',
         root:'data',
         fields:[
-            {name: 'co_negocio'}
+            {name: 'co_negocio'},
+            {name: 'tx_negocio'}
             ]
     });
     return this.store;

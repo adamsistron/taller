@@ -18,6 +18,8 @@
     <link rel="shortcut icon" href="/favicon.ico" />
   </head>
   <body>
+      <div>
     <?php echo $sf_content ?>
+          </div>
   </body>
 </html>
