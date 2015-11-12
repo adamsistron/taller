@@ -127,7 +127,39 @@ this.gridPanel_ = new Ext.grid.GridPanel({
     })
 });
 
-this.gridPanel_.render("contenedorJ002tUsuarioLista");
+
+this.tab1 = new Ext.TabPanel({
+        renderTo: contenedorJ002tUsuarioLista,
+        activeTab: 0,
+        width:950,
+        heigth: 600,
+        plain:true,
+        defaults:{autoScroll: true},
+        items:[
+        
+        //Llamadas a Otros TAB        
+        {
+            title: 'Menu',
+            autoLoad:{
+                url: '<?= $_SERVER["SCRIPT_NAME"]?>/J001tMenu/index',
+                scripts: true,
+                /*
+                params:{
+
+                }*/
+            }
+        },
+            //TAB que llama a la Lista Local        
+        {
+            title: 'Datos del Usuario',
+            items: this.gridPanel_
+        }
+                
+    ]
+});
+
+
+//this.gridPanel_.render("contenedorJ002tUsuarioLista");
 
 //Cargar el grid
 this.store_lista.baseParams.paginar = 'si';
