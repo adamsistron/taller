@@ -165,7 +165,24 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
     
     
     $c = new Criteria();
-
+    $c->clearSelectColumns();
+    
+//Seleccionar Campos
+    $c->addSelectColumn(J002tUsuarioPeer::CO_USUARIO);
+    $c->addSelectColumn(J002tUsuarioPeer::TX_INDICADOR);
+    $c->addSelectColumn(J002tUsuarioPeer::NB_EMPLEADO);
+    $c->addSelectColumn(J002tUsuarioPeer::AP_EMPLEADO);
+    $c->addSelectColumn(J002tUsuarioPeer::CO_DIVISION);
+    $c->addSelectColumn(J008tDivisionPeer::TX_DIVISION);
+    $c->addSelectColumn(J002tUsuarioPeer::CO_REGION);
+    $c->addSelectColumn(J007tRegionPeer::TX_REGION);
+    $c->addSelectColumn(J002tUsuarioPeer::CO_NEGOCIO);
+    $c->addSelectColumn(J014tNegocioPeer::TX_NEGOCIO);
+    $c->addSelectColumn(J002tUsuarioPeer::CO_ROL);
+    $c->addSelectColumn(J003tRolPeer::TX_ROL);
+    
+    
+    
     if($paginar=='si') $c->setLimit($limit)->setOffset($start);
         $c->addAscendingOrderByColumn(J002tUsuarioPeer::CO_USUARIO);
     
@@ -176,7 +193,10 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
         
                                         if($ap_empleado!=""){$c->add(J002tUsuarioPeer::AP_EMPLEADO,'%'.$ap_empleado.'%',Criteria::LIKE);}
         
-                                            if($co_division!=""){$c->add(J002tUsuarioPeer::CO_DIVISION,$co_division);}
+                                            if($co_division!=""){
+                                                $c->add(J002tUsuarioPeer::CO_DIVISION,$co_division);
+                                                
+                                            }
     
                                             if($co_rol!=""){$c->add(J002tUsuarioPeer::CO_ROL,$co_rol);}
     
@@ -185,6 +205,13 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
                                             if($co_negocio!=""){$c->add(J002tUsuarioPeer::CO_NEGOCIO,$co_negocio);}
     
                     }
+                    
+    $c->addJoin(J002tUsuarioPeer::CO_DIVISION, J008tDivisionPeer::CO_DIVISION);
+    $c->addJoin(J002tUsuarioPeer::CO_REGION, J007tRegionPeer::CO_REGION);
+    $c->addJoin(J002tUsuarioPeer::CO_NEGOCIO, J014tNegocioPeer::CO_NEGOCIO);
+    $c->addJoin(J002tUsuarioPeer::CO_ROL, J003tRolPeer::CO_ROL);
+    
+    
     $c->setIgnoreCase(true);
     $cantidadTotal = J002tUsuarioPeer::doCount($c);
     
@@ -197,9 +224,13 @@ class J002tUsuarioActions extends autoJ002tUsuarioActions
             "nb_empleado"     => trim($res["nb_empleado"]),
             "ap_empleado"     => trim($res["ap_empleado"]),
             "co_division"     => trim($res["co_division"]),
+            "tx_division"     => trim($res["tx_division"]),
             "co_rol"     => trim($res["co_rol"]),
+            "tx_rol"     => trim($res["tx_rol"]),
             "co_region"     => trim($res["co_region"]),
+            "tx_region"     => trim($res["tx_region"]),
             "co_negocio"     => trim($res["co_negocio"]),
+            "tx_negocio"     => trim($res["tx_negocio"]),
         );
     }
 
